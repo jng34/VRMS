@@ -3,9 +3,10 @@ import { Redirect } from 'react-router-dom';
 import '../sass/UserAdmin.scss';
 import useAuth from '../hooks/useAuth';
 import EditUsers from '../components/user-admin/EditUsers';
-import UserManagement from '../components/user-admin/UserManagement';
 import UserApiService from '../api/UserApiService';
 import ProjectApiService from '../api/ProjectApiService';
+import UserManagement from '../components/user-admin/UserManagement';
+import UserPermissionSearch from './UserPermissionSearch';
 
 const UserAdmin = () => {
   // Initialize state hooks
@@ -65,7 +66,8 @@ const UserAdmin = () => {
   }
 
   if (Object.keys(userToEdit).length === 0) {
-    return <UserManagement users={users} setUserToEdit={setUserToEdit} />;
+    return <UserPermissionSearch users={users} setUserToEdit={setUserToEdit} />;
+    // return <UserManagement users={users} setUserToEdit={setUserToEdit} />;
   } else {
     return (
       <EditUsers
