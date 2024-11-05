@@ -95,10 +95,9 @@ const dummyData = [
 const DummyComponent = ({ data, type }) => {
   return (
     <List className="search-results disablePadding">
-        {data.map((u, idx) => {
+        {data.map((user, index) => {
           // Destructure user object
-          const { _id, name, email } = u;
-          // return projects.length === 0 ?
+          const { _id, name, email } = user;
           return type === 'admin' ?
             (
               <ListItem
@@ -108,7 +107,7 @@ const DummyComponent = ({ data, type }) => {
                   borderBottom: 1.6,
                   borderBottomColor: 'grey.300',
                 }} 
-                key={`result_${_id}/${idx}`}>
+                key={`result_${_id}/${index}`}>
                 <ListItemButton
                   sx={{
                     px: 0.25,
@@ -118,7 +117,7 @@ const DummyComponent = ({ data, type }) => {
                   }}
                   className="search-results-button"
                   type="button"
-                  onClick={() => setUserToEdit(u)}
+                  onClick={() => setUserToEdit(user)}
                 >
                   <Grid container>
                     <Grid item>
@@ -138,7 +137,7 @@ const DummyComponent = ({ data, type }) => {
                   borderBottom: 1.6,
                   borderBottomColor: 'grey.300',
                 }} 
-                key={`result_${_id}/${idx}`}>
+                key={`result_${_id}/${index}`}>
                 <ListItemButton
                   sx={{
                     px: 0.25,
@@ -148,14 +147,14 @@ const DummyComponent = ({ data, type }) => {
                   }}
                   className="search-results-button"
                   type="button"
-                  onClick={() => setUserToEdit(u)}
+                  onClick={() => setUserToEdit(user)}
                 >
                   <Grid container justifyContent={"space-between"}>
                     <Grid item>
                       <Typography style={{fontWeight: 600}}>{name.firstName.toUpperCase() + " " + name.lastName.toUpperCase()}</Typography>
                     </Grid>
                     <Grid item>
-                      <Typography style={{fontWeight: 600}} color='black'>{u.project}</Typography>
+                      <Typography style={{fontWeight: 600}} color='black'>{user.project}</Typography>
                     </Grid>
                   </Grid>
                 </ListItemButton>
@@ -168,13 +167,13 @@ const DummyComponent = ({ data, type }) => {
 
 
 const UserPermissionSearch = ({ users, setUserToEdit }) => {
-  const [userType, setUserType] = useState('admin'); // Which results will diplay
-  const [searchText, setSearchText] = useState(''); // Serch term for the admin/PM search
+  const [userType, setUserType] = useState('admin'); // Which results will display
+  const [searchText, setSearchText] = useState(''); // Search term for the admin/PM search
 
   const location = useLocation();
 
   useEffect(() => {
-    // Edit url by adding '/admin' upon loading
+    // Edits url by adding '/admin' upon loading
     let editURL = '';
     if (userType === 'admin') {
       editURL = location.pathname + '/admin';

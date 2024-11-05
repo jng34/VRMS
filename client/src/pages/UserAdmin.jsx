@@ -66,8 +66,7 @@ const UserAdmin = () => {
   }
 
   if (Object.keys(userToEdit).length === 0) {
-    return <UserPermissionSearch users={users} setUserToEdit={setUserToEdit} />;
-    // return <UserManagement users={users} setUserToEdit={setUserToEdit} />;
+    return <UserManagement users={users} setUserToEdit={setUserToEdit} />;
   } else {
     return (
       <EditUsers
